@@ -2,9 +2,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-items = {
-    '1': {"name": "Item 1"},
-}
+items = {}
 
 @app.post("/items/")
 def create_item(item: dict):
@@ -30,8 +28,9 @@ def read_item(item_id: int):
     if item_id in items:
         return {"item_id": item_id, "name": f"Item {item_id}"}
     return {"error": "Item not found"}
-
-
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</>"
+
+if __name__ == "__main__":
+    app.run(debug=True)
